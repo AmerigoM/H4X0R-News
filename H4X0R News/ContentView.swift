@@ -10,7 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello World")
+        // adds a navigation view and the opportunity to go back
+        NavigationView {
+            // embed the elements in a table list
+            List(posts) { post in
+                Text(post.title)
+            }
+            .navigationBarTitle("H4X0R NEWS")
+        }
     }
 }
 
@@ -19,3 +26,16 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+/* the identifiable protocol allows the list to be able to
+ * identify the order of our post objects based on the id */
+struct Post: Identifiable {
+    let id: String
+    let title: String
+}
+
+let posts = [
+    Post(id: "1", title: "Hello"),
+    Post(id: "2", title: "Hello in French"),
+    Post(id: "3", title: "Hello in Italian"),
+]
