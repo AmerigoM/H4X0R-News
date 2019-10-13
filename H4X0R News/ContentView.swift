@@ -9,14 +9,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject
+    var networkManager = NetworkManager()
+    
     var body: some View {
         // adds a navigation view and the opportunity to go back
         NavigationView {
             // embed the elements in a table list
-            List(posts) { post in
-                Text(post.title)
+            List(networkManager.posts) { post in
+                HStack {
+                    Text(String(post.points))
+                    Text(post.title)
+                }
             }
             .navigationBarTitle("H4X0R NEWS")
+        }
+        .onAppear {
+            // the onAppear works like a viewDidLoad
+            self.networkManager.fetchData()
         }
     }
 }
@@ -27,8 +38,8 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-let posts = [
-    Post(id: "1", title: "Hello"),
-    Post(id: "2", title: "Hello in French"),
-    Post(id: "3", title: "Hello in Italian"),
-]
+// let posts = [
+//    Post(id: "1", title: "Hello"),
+//    Post(id: "2", title: "Hello in French"),
+//    Post(id: "3", title: "Hello in Italian"),
+// ]
