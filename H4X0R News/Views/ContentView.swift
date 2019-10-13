@@ -22,6 +22,7 @@ struct ContentView: View {
                     HStack {
                         Text(String(post.points))
                         Text(post.title)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }
