@@ -27,13 +27,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-/* the identifiable protocol allows the list to be able to
- * identify the order of our post objects based on the id */
-struct Post: Identifiable {
-    let id: String
-    let title: String
-}
-
 let posts = [
     Post(id: "1", title: "Hello"),
     Post(id: "2", title: "Hello in French"),
